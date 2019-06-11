@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<properties resource="db.properties"/>
+	<typeAliases>
+		<typeAlias alias = "UserVO" type="kr.or.ddit.user.model.UserVO"/>
+		<typeAlias alias = "PageVO" type="kr.or.ddit.paging.model.PageVO"/>
+		<typeAlias alias = "BoardVO" type="kr.or.ddit.board.model.BoardVO"/>
+		<typeAlias alias = "PostVO" type="kr.or.ddit.post.model.PostVO"/>
+		<typeAlias alias = "ReplyVO" type="kr.or.ddit.reply.model.ReplyVO"/>
+		<typeAlias alias = "AppendVO" type="kr.or.ddit.append.model.AppendVO"/>
+	</typeAliases>
+  <environments default="development">
+    <environment id="development">
+      <transactionManager type="JDBC"/>
+      <dataSource type="POOLED">
+        <property name="driver" value="${driver}"/>
+        <property name="url" value="${url}"/>
+        <property name="username" value="${user}"/>
+        <property name="password" value="${pass}"/>
+      </dataSource>
+    </environment>
+  </environments>
+  
+  <mappers>
+    <mapper resource="kr/or/ddit/config/mybatis/mapper/user.xml"/>
+    <mapper resource="kr/or/ddit/config/mybatis/mapper/board.xml"/>
+    <mapper resource="kr/or/ddit/config/mybatis/mapper/post.xml"/>
+    <mapper resource="kr/or/ddit/config/mybatis/mapper/reply.xml"/>
+    <mapper resource="kr/or/ddit/config/mybatis/mapper/append.xml"/>
+  </mappers>
+</configuration>

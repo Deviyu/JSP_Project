@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="reply">
+	<insert id="insertReply" parameterType="ReplyVO">
+		INSERT INTO REPLY
+			(
+				REPLY_ID
+				,POST_ID
+				,REPLY_CONTENT
+				,REPLY_DATE
+				,USERID
+				,REPLY_USABLE
+			)
+		VALUES
+			(
+				'REPLY'||LPAD(REPLY_SEQ.NEXTVAL, 8, '0')
+				,#{post_id}
+				,#{reply_content}
+				,#{reply_date}
+				,#{userid}
+				,#{reply_usable}
+			)
+	</insert>
+	<select id="replyPostList" parameterType="String" resultType="ReplyVO">
+		SELECT	*
+		FROM	REPLY
+		WHERE	POST_ID = #{post_id}
+		ORDER BY REPLY_ID
+	</select>
+	<select id="getReply" parameterType="String" resultType="ReplyVO">
+		SELECT	*
+		FROM	REPLY
+		WHERE	REPLY_ID = #{reply_id}		
+	</select>
+	<update id="disableReply" parameterType="String">
+		UPDATE	REPLY
+		SET		REPLY_USABLE = 'N'
+		WHERE	REPLY_ID = #{reply_id}
+	</update>
+</mapper>

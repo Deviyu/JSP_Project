@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="post">
+	<select id="postListAll" resultType="PostVO">
+		SELECT	*
+		FROM	POST
+		ORDER BY POST_ID
+	</select>
+	<select id="getPost" resultType="PostVO" parameterType="String">
+		SELECT	*
+		FROM	POST
+		WHERE	POST_ID = #{post_Id}
+	</select>
+	<select id="postList" resultType="PostVO" parameterType="String">
+		SELECT	*
+		FROM	POST
+		WHERE	BOARD_ID = #{board_Id}
+		ORDER BY POST_ID
+	</select>
+	<select id="postCnt" resultType="int" parameterType="String">
+		SELECT COUNT(A.POST_ID)
+		FROM
+		(	SELECT	*
+			FROM	POST
+			WHERE	BOARD_ID = #{board_Id}
+		) A
+	</select>
+	<select id="postPagingList" parameterType="map" resultType="PostVO">
+	<![CDATA[
+		SELECT C.*
+		FROM
+		    (SELECT  B.*, ROWNUM RN
+		    FROM
+		        (SELECT  A.*, LEVEL LV
+		        FROM
+		            (SELECT  POST_ID, USERID, POST_TITLE, POST_CONTENT, POST_DATE, REPLYTO, BOARD_ID, POST_USABLE, POST_GROUP, ROWNUM SEQ
+		            FROM    POST
+		            WHERE   BOARD_ID = #{board_Id})A
+		        START WITH REPLYTO IS NULL
+		        CONNECT BY PRIOR POST_ID = REPLYTO
+		        ORDER SIBLINGS BY POST_GROUP DESC, POST_ID DESC) B) C
+		WHERE RN >= ( ( #{page} - 1 ) * #{pageSize} ) + 1 AND RN <= #{page} * #{pageSize}
+	]]>
+	</select>
+	
+	<insert id="insertPost" parameterType="PostVO">
+		INSERT INTO POST
+			(
+				POST_ID
+				,USERID
+				,POST_TITLE
+				,POST_CONTENT
+				,POST_DATE
+				,REPLYTO
+				,BOARD_ID
+				,POST_USABLE
+				,POST_GROUP
+			)
+		VALUES
+			(
+				'POST'||LPAD(POST_SEQ.NEXTVAL, 6, '0')
+				,#{userId}
+				,#{post_title}
+				,#{post_content}
+				,#{post_date}
+				,#{replyTo, jdbcType=VARCHAR}
+				,#{board_Id}
+				,#{post_usable}
+				,#{post_group, jdbcType=VARCHAR}
+			)
+	</insert>
+	<select id="getLastPostId" resultType="String">
+		SELECT MAX(POST_ID) FROM POST
+	</select>
+	
+	<update id="disablePost" parameterType="String">
+		UPDATE	POST
+		SET		POST_USABLE = 'N'
+		WHERE	POST_ID = #{post_Id}
+	</update>
+	<update id="enablePost" parameterType="String">
+		UPDATE	POST
+		SET		POST_USABLE = 'Y'
+		WHERE	POST_ID = #{post_Id}
+	</update>
+	<update id="updatePost" parameterType="PostVO">
+		UPDATE	POST
+		SET		POST_TITLE = #{post_title}
+				,POST_CONTENT = #{post_content}
+		WHERE	POST_ID = #{post_Id}
+	</update>
+</mapper>

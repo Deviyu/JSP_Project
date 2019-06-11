@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="board">
+	
+	<select id="boardList" resultType="BoardVO">
+		SELECT	*
+		FROM	BOARD
+		ORDER BY BOARD_ID
+	</select>
+	
+	<insert id="insertBoard" parameterType="BoardVO">
+		INSERT INTO BOARD 
+				(
+					BOARD_ID
+					,USERID
+					,BOARD_NAME
+					,BOARD_USABLE
+					,BOARD_DATE
+				)
+			VALUES
+				(
+					'BOARD'||LPAD(BOARD_SEQ.NEXTVAL, 5, '0')
+					,#{userId}
+					,#{board_name}
+					,#{board_usable}
+					,#{board_date}
+				)
+	</insert>
+	
+	<update id="updateBoard" parameterType="BoardVO">
+		UPDATE	
+				BOARD
+		SET		
+				BOARD_NAME = #{board_name}
+				,BOARD_USABLE = #{board_usable}
+				,BOARD_DATE = #{board_date}
+		WHERE	
+				BOARD_ID = #{board_Id}
+	</update>
+	
+	<delete id="deleteBoard" parameterType="String">
+		DELETE FROM 
+					BOARD
+		WHERE
+				BOARD_ID = #{board_Id}
+	</delete>
+	
+	<update id="switchStatus" parameterType="BoardVO">
+		UPDATE
+				BOARD
+		SET
+				BOARD_USABLE = #{board_usable}
+		WHERE
+				BOARD_ID = #{board_Id}
+	</update>
+	
+	<select id="getBoard" parameterType="String" resultType="BoardVO">
+		SELECT	*
+		FROM	BOARD
+		WHERE	BOARD_ID = #{board_Id}
+	</select>
+</mapper>

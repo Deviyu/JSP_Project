@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="append">
+	<insert id="insertAppend" parameterType="AppendVO">
+		INSERT INTO APPEND
+			(
+				APPEND_ID
+				,POST_ID
+				,APPEND_PATH
+				,APPEND_FILENAME
+			)
+		VALUES
+			(
+				'APPEND'||LPAD(APPEND_SEQ.NEXTVAL, 8, '0')
+				,#{post_id}
+				,#{append_path}
+				,#{append_filename}
+			)
+	</insert>
+	<delete id="deleteAppend" parameterType="String">
+		DELETE FROM APPEND
+		WHERE		APPEND_ID = #{append_id}
+	</delete>
+	<select id="appendListPost" parameterType="String" resultType="AppendVO">
+		SELECT	*
+		FROM	APPEND
+		WHERE	POST_ID = #{post_id}
+	</select>
+	
+	<select id="getAppend" parameterType="String" resultType="AppendVO">
+		SELECT	*
+		FROM	APPEND
+		WHERE	APPEND_ID = #{append_id}
+	</select>
+</mapper>
