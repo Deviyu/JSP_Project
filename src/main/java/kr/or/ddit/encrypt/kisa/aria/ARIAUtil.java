@@ -1,8 +1,3 @@
-﻿/**
- * 전자정부 제공 ARIAUTIL
- * ARIAUtil
- */
-//package crdf.regi.egov.security;
 package kr.or.ddit.encrypt.kisa.aria;
 
 import java.io.File;
@@ -84,9 +79,6 @@ public class ARIAUtil {
 		}
 	}
 
-	/*
-	 *Aria 복호화
-	 */
 	public static String ariaDecrypt(String strHex, String privateKey) 
 	throws InvalidKeyException, UnsupportedEncodingException  {
 		if (strHex==null || strHex.equals("")) return "";
@@ -157,9 +149,6 @@ public class ARIAUtil {
 	}
 
 
-	/*
-	 *Aria 기본 복호화
-	 */
 	public static String ariaDecrypt(String strHex) 
 	throws InvalidKeyException, UnsupportedEncodingException  {
 		String originalData = strHex;
@@ -184,9 +173,6 @@ public class ARIAUtil {
 			return originalData;
 		}
 	}
-	/*
-	*aria 기본 암호화
-	*/
 	public static String ariaEncrypt(String str) 
 	throws InvalidKeyException, UnsupportedEncodingException {
 		if (str==null || str.equals("")) return "";
@@ -209,9 +195,6 @@ public class ARIAUtil {
 		return byteArrayToHex(c).toUpperCase();
 	}
 	
-	/*
-	*캐릭터셋 변경 암호화
-	*/
 	public static String ariaCharEncrypt(String str, String charset) 
 	throws InvalidKeyException, UnsupportedEncodingException {
 		if (str==null || str.equals("")) return "";
@@ -232,10 +215,6 @@ public class ARIAUtil {
 		return byteArrayToHex(c).toUpperCase();
 	}
 	
-	/*
-	*캐릭터셋 변경 암호화
-	*(서버타입설정 열람서버 : read, 등록관리서버 : regi)
-	*/
 	public static String ariaCharEncrypt(String str, String charset, String server) 
 	throws InvalidKeyException, UnsupportedEncodingException {
 		if (str==null || str.equals("")) return "";
@@ -261,9 +240,6 @@ public class ARIAUtil {
 
 
 
-	/*
-	 *Aria 캐릭터셋 변경 복호화
-	 */
 	public static String ariaCharDecrypt(String strHex,  String charset) 
 	throws InvalidKeyException, UnsupportedEncodingException  {
 		if (strHex==null || strHex.equals("")) return "";
@@ -283,10 +259,6 @@ public class ARIAUtil {
 		return buf.toString().trim();
 	}
 	
-	/*
-	 *Aria 캐릭터셋 변경 복호화
-	 *(서버타입설정 열람서버 : read, 등록관리서버 : regi)
-	 */
 	public static String ariaCharDecrypt(String strHex,  String charset, String server) 
 	throws InvalidKeyException, UnsupportedEncodingException  {
 		if (strHex==null || strHex.equals("")) return "";
