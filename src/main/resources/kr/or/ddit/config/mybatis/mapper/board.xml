@@ -57,7 +57,7 @@
 	</update>
 	
 	<select id="getBoard" parameterType="String" resultType="BoardVO">
-		SELECT	*
+		SELECT	/*+ INDEX(BOARD PK_BOARD)*/*
 		FROM	BOARD
 		WHERE	BOARD_ID = #{board_Id}
 	</select>

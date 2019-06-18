@@ -30,7 +30,7 @@
 		ORDER BY REPLY_ID
 	</select>
 	<select id="getReply" parameterType="String" resultType="ReplyVO">
-		SELECT	*
+		SELECT	/*+ INDEX(REPLY PK_REPLY)*/ *
 		FROM	REPLY
 		WHERE	REPLY_ID = #{reply_id}		
 	</select>
