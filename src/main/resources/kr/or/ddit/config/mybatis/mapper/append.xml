@@ -24,13 +24,13 @@
 		WHERE		APPEND_ID = #{append_id}
 	</delete>
 	<select id="appendListPost" parameterType="String" resultType="AppendVO">
-		SELECT	*
+		SELECT	/*+ INDEX(APPEND IDX1_APPEND)*/ *
 		FROM	APPEND
 		WHERE	POST_ID = #{post_id}
 	</select>
 	
 	<select id="getAppend" parameterType="String" resultType="AppendVO">
-		SELECT	*
+		SELECT	/*+ INDEX(APPEND PK_APPEND)*/ *
 		FROM	APPEND
 		WHERE	APPEND_ID = #{append_id}
 	</select>

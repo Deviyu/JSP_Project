@@ -9,7 +9,7 @@
 		ORDER BY POST_ID
 	</select>
 	<select id="getPost" resultType="PostVO" parameterType="String">
-		SELECT	*
+		SELECT	/*+ INDEX(POST PK_POST)*/ *
 		FROM	POST
 		WHERE	POST_ID = #{post_Id}
 	</select>

@@ -10,7 +10,7 @@
   
 	<!-- 특정 사용자 조회 -->
  	<select id="getUser" parameterType = "String" resultType="UserVO">
-  		SELECT *
+  		SELECT /*+ INDEX(USERS PK_USERS)*/ *
   		FROM USERS
   		WHERE USERID = #{userId}
  	</select>
@@ -18,7 +18,7 @@
  	<!-- 사용자 페이지 리스트 조회 -->
 	<select id="userPagingList" parameterType="PageVO" resultType="UserVO">
 		<![CDATA[
-	 	SELECT *
+	 	SELECT /*+ INDEX(USERS PK_USERS)*/ *
 		FROM
 		(SELECT A.*, ROWNUM RN
 		FROM
@@ -31,7 +31,7 @@
 	 
 	<!-- 사용자 전체 수 조회 -->
  	<select id = "usersCnt" resultType="int">
- 		SELECT COUNT(*)
+ 		SELECT /*+ INDEX_FFS(USERS PK_USERS)*/ COUNT(*)
  		FROM USERS
  	</select>
  	<insert id="insertUser" parameterType ="UserVO">

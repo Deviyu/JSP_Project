@@ -77,7 +77,8 @@ public class PostFormController extends HttpServlet {
 		String post_group = null;
 		if(!(replyTo.equals(""))) {
 			PostVO replyVO = postService.getPost(replyTo);
-			post_group = replyVO.getReplyTo() == null ? replyVO.getReplyTo() : replyVO.getPost_group();
+			logger.debug("replyVO.getReplyTo() : {}", replyVO.getReplyTo());
+			post_group = replyVO.getReplyTo() == null ? replyTo : replyVO.getPost_group();
 		}
 		
 		PostVO postVO = new PostVO(userId, post_title, post_date, replyTo, post_content, board_Id, post_usable, post_group);
