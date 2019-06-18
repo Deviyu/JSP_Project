@@ -38,7 +38,7 @@ public class PostDaoImplTest {
 		
 		/***Then***/
 		logger.debug("postList : {}",postList);
-		assertEquals(3, postList.size());
+		assertNotNull(postList);
 	}
 	
 	
@@ -92,7 +92,6 @@ public class PostDaoImplTest {
 		/***When***/
 		int cnt = dao.postCnt(board_Id);
 		/***Then***/
-		assertEquals(2, cnt);
-		
+		assertEquals(31, cnt);
 	}
 }

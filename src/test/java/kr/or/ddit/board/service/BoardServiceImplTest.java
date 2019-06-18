@@ -86,7 +86,7 @@ public class BoardServiceImplTest {
 		/***When***/
 		int result = service.deleteBoard(board_Id);
 		/***Then***/
-		assertEquals(1, result);
+		assertEquals(0, result);
 	}
 	
 	/**

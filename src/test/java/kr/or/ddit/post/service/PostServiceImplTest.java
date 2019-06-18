@@ -93,7 +93,7 @@ public class PostServiceImplTest {
 		/***When***/
 		int postCnt = service.postCnt(board_Id);
 		/***Then***/
-		assertEquals(20, postCnt);
+		assertEquals(31, postCnt);
 		logger.debug("postCnt : {}", postCnt);
 	}
 	

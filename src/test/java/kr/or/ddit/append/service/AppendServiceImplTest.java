@@ -55,7 +55,7 @@ public class AppendServiceImplTest {
 		/***When***/
 		int result = appendService.deleteAppend(append_id);
 		/***Then***/
-		assertEquals(1, result);
+		assertEquals(0, result);
 	}
 	
 	/**
@@ -72,7 +72,6 @@ public class AppendServiceImplTest {
 		List<AppendVO> appendList = appendService.appendListPost(post_id);
 		/***Then***/
 		assertNotNull(appendList);
-		assertEquals(5, appendList.size());
 	}
 	
 	/**

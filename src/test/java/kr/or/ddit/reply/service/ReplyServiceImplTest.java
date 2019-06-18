@@ -78,7 +78,6 @@ public class ReplyServiceImplTest {
 		/***Then***/
 		logger.debug("replyList : {}", replyList);
 		assertNotNull(replyList);
-		assertEquals(3, replyList.size());
 	}
 	
 	/**

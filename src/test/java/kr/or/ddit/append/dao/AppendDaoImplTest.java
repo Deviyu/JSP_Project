@@ -56,7 +56,7 @@ public class AppendDaoImplTest {
 		/***When***/
 		int result = appendDao.deleteAppend(append_id);
 		/***Then***/
-		assertEquals(1, result);
+		assertEquals(0, result);
 	}
 	
 	/**
@@ -73,7 +73,6 @@ public class AppendDaoImplTest {
 		List<AppendVO> appendList = appendDao.appendListPost(post_id);
 		/***Then***/
 		assertNotNull(appendList);
-		assertEquals(5, appendList.size());
 	}
 	
 	/**

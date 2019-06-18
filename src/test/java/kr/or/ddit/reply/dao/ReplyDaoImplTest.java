@@ -78,7 +78,7 @@ public class ReplyDaoImplTest {
 		/***Then***/
 		logger.debug("replyList : {}", replyList);
 		assertNotNull(replyList);
-		assertEquals(2, replyList.size());
+		assertEquals(5, replyList.size());
 	}
 	
 	/**

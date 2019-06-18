@@ -101,7 +101,7 @@ public class UserServiceTest {
 	@Test
 	public void insert_DeleteUserTest() {
 		/***Given***/
-		String userId = "jakeharunt";
+		String userId = "jakeharunt3";
 		UserVO userVO = new UserVO(userId, "유승진", "Devi", "java201901", "대전광역시 중구 태평로 15 (태평동, 버드내마을아파트)", "106동 204호", "34890", new Date(), "noimage.png");
 		/***When***/
 		int insertResult = userService.insertUser(userVO);

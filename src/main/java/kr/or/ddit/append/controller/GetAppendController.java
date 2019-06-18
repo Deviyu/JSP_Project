@@ -35,6 +35,7 @@ public class GetAppendController extends HttpServlet {
 		appendService = new AppendServiceImpl();
 	}
 	
+	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String append_id = request.getParameter("append_id");
 		logger.debug("append_id : {}", append_id);
