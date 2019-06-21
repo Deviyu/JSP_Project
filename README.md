@@ -1,7 +1,3 @@
-<style>
-	li { margin : -10px 0px;}
-</style>
-
 #JSP Project
 ####JSP와 서블릿을 이용한 게시판 과제
 ######2019.6.05 ~ 6.12
